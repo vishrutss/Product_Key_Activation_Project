@@ -1,0 +1,78 @@
+WindowManager:
+	MainWindow:
+	SecondWindow:
+	
+<MainWindow>:
+	name: "main"
+	namee:namee
+	email:email
+	GridLayout:
+		cols: 2
+
+		Label:
+			text: "Name: "
+
+		TextInput:
+			id: namee
+			multiline: False
+		
+		Label:
+			text: "Email: "
+			
+		TextInput:
+			id: email
+			multiline: False
+			
+		Label:
+			text: "Phone Number: "
+		
+		TextInput:
+			multiline: False
+
+		Label:
+			text: "Credit card number: "
+
+		TextInput:
+			multiline: False
+		
+		Label:
+			text: "Expiration Date (MM/YY)"
+		
+		TextInput:
+			multiline: False
+		
+		Button:
+			text: "Already have a product key?"
+			on_release:
+				app.root.current = "second"
+				root.manager.transition.direction = "left"
+				
+		Button:
+			text: "Submit"
+			on_press: root.btn()
+			on_release:
+				app.root.current = "second" if namee.text!="" and email.text!="" else "main"
+				root.manager.transition.direction = "left"
+
+
+<SecondWindow>:
+	name: "second"
+	pkey: pkey
+	GridLayout:
+		cols:1
+		
+		Label:
+			text: "Enter the product key: "
+			
+		TextInput:
+			id: pkey
+			multiline: False
+		Button:
+			text: "Continue"
+			on_press: root.btn()
+			
+		Button:
+			text: "Go Back"
+			on_release:
+				app.root.current = "main"
+				root.manager.transition.direction = "right"
